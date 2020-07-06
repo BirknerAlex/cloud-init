@@ -42,7 +42,7 @@ class DataSourceHiBee(sources.DataSource):
         self._server_type = None
 
     def _get_data(self):
-        LOG.info("Running on HiBee")
+        LOG.info("Running on HiBee, downloading meta data now...")
 
         md = bee_helper.load_metadata(
             self.metadata_address, timeout=self.timeout,
@@ -58,7 +58,7 @@ class DataSourceHiBee(sources.DataSource):
         self.userdata_raw = md.get("user_data", None)
         self._server_type = md.get('type', self.ServerTypeBareMetal)
 
-        LOG.debug("Detected server type %s", self._server_type)
+        LOG.info("Detected HiBee server type: %s", self._server_type)
         return True
 
     def check_instance_id(self, sys_cfg):
