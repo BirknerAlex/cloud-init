@@ -1179,7 +1179,7 @@ dscheck_HiBee() {
         *\ ds=hibee\ *) return ${DS_FOUND};;
     esac
 
-    if [ -f "${PATH_ROOT}/var/run/hibee" ]; then
+    if [ -f "${PATH_ROOT}/var/lib/cloud/.hibee" ]; then
         return ${DS_FOUND}
     fi
 
