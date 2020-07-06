@@ -14,6 +14,7 @@ BUILTIN_DS_CONFIG = {
     'metadata_url': 'http://169.254.169.254/metadata/v1.json',
 }
 
+
 class DataSourceHiBee(sources.DataSource):
     dsname = 'HiBee'
 
@@ -86,7 +87,7 @@ class DataSourceHiBee(sources.DataSource):
 
 # Used to match classes to dependencies
 datasources = [
-    (DataSourceHiBee, (sources.DEP_FILESYSTEM, )),
+    (DataSourceHiBee, (sources.DEP_FILESYSTEM, sources.DEP_NETWORK)),
 ]
 
 

@@ -49,7 +49,6 @@ DEFAULT_LOCAL = [
     OpenStack.DataSourceOpenStackLocal,
     RbxCloud.DataSourceRbxCloud,
     Scaleway.DataSourceScaleway,
-    HiBee.DataSourceHiBee,
 ]
 
 DEFAULT_NETWORK = [
@@ -65,6 +64,7 @@ DEFAULT_NETWORK = [
     NoCloud.DataSourceNoCloudNet,
     OpenStack.DataSourceOpenStack,
     OVF.DataSourceOVFNet,
+    HiBee.DataSourceHiBee,
 ]
 
 
