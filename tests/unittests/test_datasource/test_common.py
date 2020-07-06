@@ -27,6 +27,7 @@ from cloudinit.sources import (
     DataSourceRbxCloud as RbxCloud,
     DataSourceScaleway as Scaleway,
     DataSourceSmartOS as SmartOS,
+    DataSourceHiBee as HiBee,
 )
 from cloudinit.sources import DataSourceNone as DSNone
 
@@ -48,6 +49,7 @@ DEFAULT_LOCAL = [
     OpenStack.DataSourceOpenStackLocal,
     RbxCloud.DataSourceRbxCloud,
     Scaleway.DataSourceScaleway,
+    HiBee.DataSourceHiBee,
 ]
 
 DEFAULT_NETWORK = [

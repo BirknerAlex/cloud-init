@@ -54,6 +54,7 @@ environments in the public cloud:
 - CloudStack
 - AltCloud
 - SmartOS
+- HiBee
 
 Additionally, cloud-init is supported on these private clouds:
 
