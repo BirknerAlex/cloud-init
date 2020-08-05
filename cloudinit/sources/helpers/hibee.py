@@ -19,15 +19,15 @@ def load_metadata(url, timeout=2, sec_between=2, retries=30):
 
 
 def convert_network_configuration(config, dns_servers):
-    """Convert the HiBee Network config into Cloud-init's netconfig
-       format.
+    """Convert the HiBee Network config into Cloud-Init's netconfig (v1) format.
+       See: https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html
 
        Example JSON:
         {'public': [
               {'mac': '40:9a:4c:8d:96:77',
                'ipv4': {'gateway': '176.57.186.5',
                         'netmask': '255.255.255.0',
-                        'ip_address': '176.57.186.1'},
+                        'address': '176.57.186.1'},
                'type': 'public'
            ]
         }
@@ -36,7 +36,7 @@ def convert_network_configuration(config, dns_servers):
     def _convert_subnet(cfg):
         subpart = {'type': 'static',
                    'control': 'auto',
-                   'address': cfg.get('ip_address'),
+                   'address': cfg.get('address'),
                    'gateway': cfg.get('gateway'),
                    'netmask': cfg.get('netmask')}
 
@@ -66,7 +66,7 @@ def convert_network_configuration(config, dns_servers):
                 'name': if_name}
 
         subnets = []
-        for netdef in 'ipv4':
+        for netdef in ['ipv4']:
             raw_subnet = nic.get(netdef, None)
             if not raw_subnet:
                 continue
