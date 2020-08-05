@@ -52,6 +52,7 @@ class DataSourceHiBee(sources.DataSource):
         self.metadata['instance-id'] = md.get('id')
         self.metadata['local-hostname'] = md.get('fqdn')
         self.metadata['interfaces'] = md.get('interfaces')
+        self.metadata['routes'] = md.get('routes')
         self.metadata['public-keys'] = md.get('public_keys')
         self.metadata['availability_zone'] = md.get('region', 'unknown')
         self.vendordata_raw = md.get("vendor_data", None)
@@ -80,8 +81,9 @@ class DataSourceHiBee(sources.DataSource):
             raise Exception("Unable to get meta-data from server....")
 
         nameservers = self.metadata_full['dns']['nameservers']
+        routes = self.metadata.get('routes', [])
         self._network_config = bee_helper.convert_network_configuration(
-            interfaces, nameservers)
+            interfaces, nameservers, routes)
         return self._network_config
 
 

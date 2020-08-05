@@ -18,7 +18,7 @@ def load_metadata(url, timeout=2, sec_between=2, retries=30):
     return util.load_json(response.contents.decode())
 
 
-def convert_network_configuration(config, dns_servers):
+def convert_network_configuration(config, dns_servers, routes):
     """Convert the HiBee Network config into Cloud-Init's netconfig (v1) format.
        See: https://cloudinit.readthedocs.io/en/latest/topics/network-config-format-v1.html
 
@@ -87,6 +87,15 @@ def convert_network_configuration(config, dns_servers):
     if dns_servers:
         LOG.debug("added dns servers: %s", dns_servers)
         nic_configs.append({'type': 'nameserver', 'address': dns_servers})
+
+    if len(routes) > 0:
+        for route in routes:
+            nic_configs.append({
+                'type': 'route',
+                'destination': route['destination'],
+                'gateway': route['gateway'],
+                'metric': route['metric'],
+            })
 
     return {'version': 1, 'config': nic_configs}
 
