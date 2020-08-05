@@ -88,7 +88,7 @@ def convert_network_configuration(config, dns_servers, routes):
         LOG.debug("added dns servers: %s", dns_servers)
         nic_configs.append({'type': 'nameserver', 'address': dns_servers})
 
-    if len(routes) > 0:
+    if routes is not None:
         for route in routes:
             nic_configs.append({
                 'type': 'route',

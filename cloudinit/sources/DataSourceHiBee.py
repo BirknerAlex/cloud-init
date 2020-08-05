@@ -81,7 +81,7 @@ class DataSourceHiBee(sources.DataSource):
             raise Exception("Unable to get meta-data from server....")
 
         nameservers = self.metadata_full['dns']['nameservers']
-        routes = self.metadata.get('routes', [])
+        routes = self.metadata.get('routes')
         self._network_config = bee_helper.convert_network_configuration(
             interfaces, nameservers, routes)
         return self._network_config
